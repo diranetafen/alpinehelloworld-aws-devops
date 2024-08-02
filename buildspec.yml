@@ -37,7 +37,13 @@ phases:
         if [ -f "/root/kustomization.yaml" ]; then
           OLD_IMAGE_TAG=$(grep -r "newTag" /root/kustomization.yaml | cut -f2 -d'"')
           apt-get update && apt-get install -y bc
-          push_release
+          if (( $(echo "$OLD_IMAGE_TAG < $IMAGE_TAG" |bc -l) ));
+            then
+              echo Tag looks to be ok ...
+              push_release    
+          else
+            echo "newTag must be greater than previous tag, so nothing to do"
+          fi 
         else
           echo "so it's your first build ? let's go ..."
           push_release
