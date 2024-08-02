@@ -48,6 +48,10 @@ phases:
           echo "so it's your first build ? let's go ..."
           push_release
         fi
+artifacts:
+  files:
+    - '/root/kustomization.yaml'
+  name: release
 cache:
   paths:
     - '/root/kustomization.yaml'
