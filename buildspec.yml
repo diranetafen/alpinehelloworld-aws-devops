@@ -50,8 +50,9 @@ phases:
         fi
 artifacts:
   files:
-    - '/root/kustomization.yaml'
+    - 'kustomization.yaml'
   name: release
+  base-directory: /root/
 cache:
   paths:
     - '/root/kustomization.yaml'
